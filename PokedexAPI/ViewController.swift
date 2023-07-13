@@ -80,7 +80,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
             switch result {
             case .success(let pokemonDetailResponse):
-//                self.details = pokemonDetailResponse.abilities
+//                self.details = pokemonDetailResponse.abilitiessss
                 self.detailData.append(pokemonDetailResponse)
                 print("Done fetching \(pokemon.url)")
                 print(self.details.count)
