@@ -26,9 +26,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         
         cell.lblName.text = pokemonObject.name
-        cell.lblURL.text = pokemonObject.url
         cell.imgGambar.sd_setImage(with: URL(string: detailData[indexPath.item].sprites.front_default)!)
         print(pokemonImage.sprites.back_default)
+        
+        // Configure the cell
+        cell.layer.cornerRadius = 15.0
+        cell.layer.borderWidth = 0.0
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cell.layer.shadowRadius = 5.0
+        cell.layer.shadowOpacity = 1
+        cell.layer.masksToBounds = false //<-
         
        
         
@@ -40,7 +48,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300, height: 200)
+        return CGSize(width: 170, height: 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

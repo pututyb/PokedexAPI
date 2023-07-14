@@ -13,16 +13,10 @@ class PokemonCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imgGambar: UIImageView!
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblURL: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        layer.cornerRadius = cornerRadius
-        layer.shadowRadius = 8.0
-        layer.shadowOpacity = 0.50
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 20)
     }
 
 }
