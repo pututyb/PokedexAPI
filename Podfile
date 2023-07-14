@@ -7,5 +7,5 @@ target 'PokedexAPI' do
 
   # Pods for PokedexAPI
   pod 'Alamofire'
-
+  pod 'SDWebImage' 
 end

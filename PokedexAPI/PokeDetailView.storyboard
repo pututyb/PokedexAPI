@@ -35,17 +35,27 @@
                                     <constraint firstAttribute="height" constant="211" id="yce-95-EmO"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="18u-ez-gph">
+                                <rect key="frame" x="76" y="212" width="240" height="198.66666666666669"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="vB5-N6-xbi"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="eAO-0Y-ARX" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="JZp-Qu-RaW"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="18u-ez-gph" secondAttribute="trailing" constant="77" id="SKx-dc-Kmf"/>
+                            <constraint firstItem="18u-ez-gph" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="76" id="UBj-4J-wUd"/>
                             <constraint firstItem="eAO-0Y-ARX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZH9-BX-Zjf"/>
                             <constraint firstItem="eAO-0Y-ARX" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="ezL-4d-I2n"/>
+                            <constraint firstItem="18u-ez-gph" firstAttribute="top" secondItem="eAO-0Y-ARX" secondAttribute="bottom" id="tTS-ZP-gfn"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="lblAbilityName" destination="wVY-ce-XmB" id="0zN-8k-dw1"/>
+                        <outlet property="lblImage" destination="18u-ez-gph" id="jkp-6w-1hZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -54,6 +64,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="square.and.arrow.up.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

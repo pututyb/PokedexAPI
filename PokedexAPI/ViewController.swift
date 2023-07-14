@@ -22,32 +22,52 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         guard let cell = self.collectionChange.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? PokemonCollectionViewCell else { return UICollectionViewCell()}
         
         let pokemonObject = pokemon[indexPath.item]
+        let pokemonImage = detailData[indexPath.item]
+        
         
         cell.lblName.text = pokemonObject.name
         cell.lblURL.text = pokemonObject.url
+        cell.imgGambar.sd_setImage(with: URL(string: detailData[indexPath.item].sprites.front_default)!)
+        print(pokemonImage.sprites.back_default)
+        
+       
+        
+        
+//        print("Jumlah data awal sekarang: \(pokemon.count), jumlah data detail sekarang: \(detailData.count)")
         
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 100)
+        return CGSize(width: 300, height: 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
         let selectedPokemon = pokemon[indexPath.item]
-        movetoDetailView(with: selectedPokemon, id: indexPath.item)
+        movetoDetailView(indexPath: indexPath.item)
 //        fetchDataDetails(pokemon: selectedPokemon)
-    }
-    
-    func movetoDetailView(with pokemon: Pokemon, id: Int) {
         let storyboard = UIStoryboard(name: "PokeDetailView", bundle: nil)
         guard let moveDetailView = storyboard.instantiateViewController(withIdentifier: "PokeDetailViewController") as? PokeDetailViewController else { return }
+        moveDetailView.details = detailData[indexPath.item]
         
-        print("count: \(details.count)")
-        moveDetailView.details = detailData[id].abilities
-        navigationController?.pushViewController(moveDetailView, animated: true)
+        let cell = collectionChange.cellForItem(at: indexPath) as! PokemonCollectionViewCell
+        moveDetailView.penampungGambar = cell.imgGambar.image!
+        self.navigationController?.pushViewController(moveDetailView, animated: true)
+        
+        
+    }
+    
+    func movetoDetailView(indexPath: Int) {
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
+            
+            print(strongSelf.details)
+            if !strongSelf.pokemon.isEmpty {
+                strongSelf.fetchDataDetails(pokemon: strongSelf.pokemon[indexPath])
+            }
+        }
     }
     
     
@@ -65,6 +85,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         collectionChange.contentInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         
+        
     }
     
     func fetchAllDetails() {
@@ -74,43 +95,57 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    func fetchDataDetails(pokemon: Pokemon) {
-        print("Start fetching \(pokemon.url)")
-        APIManager.sharedInstance.fetchData(from: pokemon.url) { (result: Result<PokemonDetailResponse, Error>) in
-    
-            switch result {
-            case .success(let pokemonDetailResponse):
-//                self.details = pokemonDetailResponse.abilitiessss
-                self.detailData.append(pokemonDetailResponse)
-                print("Done fetching \(pokemon.url)")
-                print(self.details.count)
-                if self.detailData.count == self.pokemon.count {
-                    self.detailData = self.detailData.sorted { $0.id < $1.id }
-                    self.collectionChange.reloadData()
-                    print("Done all")
-                }
-            case .failure(let error):
-                print("Error: \(error)")
-            }
-        }
-    }
-    
-    
     func pokeGet()  {
          APIManager.sharedInstance.fetchData(from: "https://pokeapi.co/api/v2/pokemon/") { (result: Result<PokemonListResponse, Error>) in
             
             switch result {
             case .success(let pokemonListResponse):
                 self.pokemon = pokemonListResponse.results
-                print(self.pokemon.first)
+                self.pokemon.append(contentsOf: pokemonListResponse.results)
+//                self.collectionChange.reloadData()
+                print("Udah selesai, count: \(self.pokemon.count)")
                 self.fetchAllDetails()
-                self.collectionChange.reloadData()
             case .failure(let error):
                 
                 print("Error: \(error)")
             }
         }
     }
+    
+    func fetchDataDetails(pokemon: Pokemon) {
+        APIManager.sharedInstance.fetchData(from: pokemon.url) { (result: Result<PokemonDetailResponse, Error>) in
+    
+            switch result {
+            case .success(let pokemonDetailResponse):
+                self.detailData.append(pokemonDetailResponse)
+                print("Finished fetching \(pokemon.name), jumlah sekarang: \(self.detailData.count)")
+                if !self.detailData.isEmpty, self.detailData.count == self.pokemon.count {
+                    self.collectionChange.reloadData()
+                }
+                
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+//    func fetchLocationAreaEncounter(pokemon: Pokemon) {
+//        APIManager.sharedInstance.fetchData(from: pokemon.url) { (result: Result<PokemonDetailResponse, Error>) in
+//
+//            switch result {
+//            case .success(let pokemonDetailResponse):
+//                self.detailData.append(pokemonDetailResponse)
+//                print("Finished fetching \(pokemon.name), jumlah sekarang: \(self.detailData.count)")
+//                if !self.detailData.isEmpty, self.detailData.count == self.pokemon.count {
+//                    self.collectionChange.reloadData()
+//                }
+//
+//            case .failure(let error):
+//                print("Error: \(error)")
+//            }
+//        }
+//    }
+    
     
     
 }

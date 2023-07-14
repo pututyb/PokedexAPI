@@ -32,23 +32,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abilites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdO-d7-iav">
-                                <rect key="frame" x="8" y="90" width="284" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iNy-pp-ZkI">
+                                <rect key="frame" x="8" y="89" width="100" height="100"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" systemColor="systemCyanColor"/>
                         <constraints>
+                            <constraint firstItem="iNy-pp-ZkI" firstAttribute="leading" secondItem="cQ3-QD-FsD" secondAttribute="leading" constant="8" id="30h-aa-1kf"/>
                             <constraint firstItem="uH1-jm-POl" firstAttribute="leading" secondItem="cQ3-QD-FsD" secondAttribute="leading" constant="8" id="7PM-AV-Puq"/>
                             <constraint firstAttribute="trailing" secondItem="uH1-jm-POl" secondAttribute="trailing" constant="8" id="DuZ-a4-9X1"/>
                             <constraint firstItem="uH1-jm-POl" firstAttribute="top" secondItem="cQ3-QD-FsD" secondAttribute="top" constant="19" id="Uce-oq-qFV"/>
-                            <constraint firstItem="FdO-d7-iav" firstAttribute="top" secondItem="0Q8-CA-35b" secondAttribute="bottom" constant="17" id="VvT-hS-7Id"/>
                             <constraint firstItem="0Q8-CA-35b" firstAttribute="leading" secondItem="cQ3-QD-FsD" secondAttribute="leading" constant="8" id="Yi0-sT-oLx"/>
-                            <constraint firstItem="FdO-d7-iav" firstAttribute="leading" secondItem="cQ3-QD-FsD" secondAttribute="leading" constant="8" id="bjF-VP-U16"/>
-                            <constraint firstAttribute="trailing" secondItem="FdO-d7-iav" secondAttribute="trailing" constant="8" id="lvK-8N-dAq"/>
+                            <constraint firstAttribute="trailing" secondItem="iNy-pp-ZkI" secondAttribute="trailing" constant="192" id="aZh-bw-K0a"/>
+                            <constraint firstItem="iNy-pp-ZkI" firstAttribute="top" secondItem="0Q8-CA-35b" secondAttribute="bottom" constant="16" id="gMA-gU-EY6"/>
                             <constraint firstAttribute="trailing" secondItem="0Q8-CA-35b" secondAttribute="trailing" constant="8" id="ntX-zL-eus"/>
+                            <constraint firstAttribute="bottom" secondItem="iNy-pp-ZkI" secondAttribute="bottom" constant="11" id="oRH-zE-XKs"/>
                             <constraint firstItem="0Q8-CA-35b" firstAttribute="top" secondItem="uH1-jm-POl" secondAttribute="bottom" constant="30" id="rJ9-lk-wQf"/>
                         </constraints>
                     </view>
@@ -63,7 +61,7 @@
             </constraints>
             <size key="customSize" width="267" height="82"/>
             <connections>
-                <outlet property="lblAbilities" destination="FdO-d7-iav" id="EPk-E3-aeT"/>
+                <outlet property="imgGambar" destination="iNy-pp-ZkI" id="ngU-ts-gUz"/>
                 <outlet property="lblName" destination="uH1-jm-POl" id="mN0-k1-6G3"/>
                 <outlet property="lblURL" destination="0Q8-CA-35b" id="NW9-DC-naZ"/>
             </connections>
@@ -71,8 +69,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
