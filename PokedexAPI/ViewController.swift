@@ -53,7 +53,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
-        let selectedPokemon = pokemon[indexPath.item]
+        _ = pokemon[indexPath.item]
         movetoDetailView(indexPath: indexPath.item)
 //        fetchDataDetails(pokemon: selectedPokemon)
         let storyboard = UIStoryboard(name: "PokeDetailView", bundle: nil)
@@ -126,7 +126,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             switch result {
             case .success(let pokemonDetailResponse):
                 self.detailData.append(pokemonDetailResponse)
-                print("Finished fetching \(pokemon.name), jumlah sekarang: \(self.detailData.count)")
                 if !self.detailData.isEmpty, self.detailData.count == self.pokemon.count {
                     self.collectionChange.reloadData()
                 }
