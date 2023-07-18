@@ -61,8 +61,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         moveDetailView.details = detailData[indexPath.item]
         
         let cell = collectionChange.cellForItem(at: indexPath) as! PokemonCollectionViewCell
-        moveDetailView.penampungGambar = cell.imgGambar.image!
+//        moveDetailView.penampungGambar = cell.imgGambar.image!
         self.navigationController?.pushViewController(moveDetailView, animated: true)
+        
         
         
     }
@@ -94,6 +95,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionChange.contentInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func fetchAllDetails() {

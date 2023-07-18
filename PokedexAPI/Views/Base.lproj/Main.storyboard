@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ALp-eC-pAX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PokedexAPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ij5-bI-NWm">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="K6Y-cu-1v3">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ij5-bI-NWm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6gp-ds-YaB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ij5-bI-NWm" secondAttribute="bottom" id="dQO-gR-Tho"/>
+                            <constraint firstItem="Ij5-bI-NWm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="p6i-Ik-JRb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ij5-bI-NWm" secondAttribute="trailing" id="qAh-Ub-ixN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="KFG-qT-8Wt"/>
+                    <connections>
+                        <outlet property="collectionChange" destination="Ij5-bI-NWm" id="uRJ-hS-i8o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3613" y="501"/>
+        </scene>
+        <!--Likes-->
+        <scene sceneID="kWc-AH-s0q">
+            <objects>
+                <viewController storyboardIdentifier="PokemonLikesTableViewController" id="8Fg-1A-pLd" customClass="PokemonLikesTableViewController" customModule="PokedexAPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TcU-q7-AXN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ol2-uA-lb0">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SBD-pt-Hsa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SBD-pt-Hsa" firstAttribute="bottom" secondItem="ol2-uA-lb0" secondAttribute="bottom" id="LqF-Gr-A6E"/>
+                            <constraint firstItem="SBD-pt-Hsa" firstAttribute="trailing" secondItem="ol2-uA-lb0" secondAttribute="trailing" id="RYg-2e-2Xl"/>
+                            <constraint firstItem="ol2-uA-lb0" firstAttribute="leading" secondItem="SBD-pt-Hsa" secondAttribute="leading" id="abq-Am-pSO"/>
+                            <constraint firstItem="ol2-uA-lb0" firstAttribute="top" secondItem="SBD-pt-Hsa" secondAttribute="top" id="xKb-AG-bqC"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Likes" image="heart" catalog="system" id="XrS-da-kCb"/>
+                    <connections>
+                        <outlet property="tablePokemonLikes" destination="ol2-uA-lb0" id="4cP-vk-mHn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H3c-ZH-1Dw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2720" y="1236"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="NXz-z1-vZV">
+            <objects>
+                <tabBarController id="ALp-eC-pAX" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nT3-xP-hBh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="v0T-3v-akL" kind="relationship" relationship="viewControllers" id="pvw-5f-eAf"/>
+                        <segue destination="8Fg-1A-pLd" kind="relationship" relationship="viewControllers" id="l06-aD-GUc"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fG3-Wf-4vX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1708" y="501"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="cVS-kE-XK8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v0T-3v-akL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="DCm-I1-vXx"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XJX-Vy-HGC">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="YOH-bj-RJr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pwI-zo-P7E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2720" y="501"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
