@@ -70,7 +70,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Likes" image="heart" catalog="system" id="XrS-da-kCb"/>
                     <connections>
-                        <outlet property="tablePokemonLikes" destination="ol2-uA-lb0" id="4cP-vk-mHn"/>
+                        <outlet property="tableView" destination="ol2-uA-lb0" id="EBs-wj-Wpn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H3c-ZH-1Dw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
