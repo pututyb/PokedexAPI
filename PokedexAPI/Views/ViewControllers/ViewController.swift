@@ -55,7 +55,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         viewModel.movetoDetailView(indexPath: indexPath.item)
         let storyboard = UIStoryboard(name: "PokeDetailView", bundle: nil)
         guard let moveDetailView = storyboard.instantiateViewController(withIdentifier: "PokeDetailViewController") as? PokeDetailViewController else { return }
-        moveDetailView.details = viewModel.detailData[indexPath.item]
+        moveDetailView.viewModel.details = viewModel.detailData[indexPath.item]
         
         _ = collectionChange.cellForItem(at: indexPath) as! PokemonCollectionViewCell
         self.navigationController?.pushViewController(moveDetailView, animated: true)
@@ -79,7 +79,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
        
         viewModel.reloadDataAction = { [weak self] in
             self?.collectionChange.reloadData()
-            print("Reload")
         }
         
         viewModel.pokeGet()

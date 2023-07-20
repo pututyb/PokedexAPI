@@ -23,8 +23,6 @@ class ViewModelViewController {
             case .success(let pokemonListResponse):
                 self.pokemon = pokemonListResponse.results
                 self.pokemon.append(contentsOf: pokemonListResponse.results)
-                //                self.collectionChange.reloadData()
-                print("Udah selesai, count: \(self.pokemon.count)")
                 self.fetchAllDetails()
             case .failure(let error):
                 
