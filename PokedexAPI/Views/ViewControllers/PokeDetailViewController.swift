@@ -9,7 +9,8 @@ import UIKit
 import SDWebImage
 import CoreData
 
-class PokeDetailViewController: UIViewController {
+class PokeDetailViewController: UIViewController, PokeDetailViewModelDelegate {
+    
     
     var viewModel = PokeDetailViewModel()
     
@@ -43,6 +44,7 @@ class PokeDetailViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         viewModel.showAllDataDetails()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
@@ -83,8 +85,15 @@ class PokeDetailViewController: UIViewController {
         
         
         
-        if let spriteURLString = viewModel.details?.sprites.front_default, let spriteURL = URL(string: spriteURLString) {
-            lblImage.sd_setImage(with: spriteURL, completed: nil)
+        if let spriteURLString = viewModel.details?.sprites.front_default,
+            let spriteURL = URL(string: spriteURLString) {
+            lblImage.sd_setImage(with: spriteURL) { [weak self] (image, error, _, _) in
+                if let image = image {
+                    self?.viewModel.pokeImage = image
+                } else {
+                    print("Failed to load image: \(error?.localizedDescription ?? "")")
+                }
+            }
         }
         func setWarnaStats(bar: UIProgressView, nilai: Int) {
             if nilai <= 30 {
@@ -96,13 +105,28 @@ class PokeDetailViewController: UIViewController {
             }
         }
         
-//        self.btnLikeSave.isEnabled = false
+        
+        //        self.btnLikeSave.isEnabled = false
         viewModel.checkData(lblName.text!) { [weak self] isExists in
             self?.viewModel.isExists = isExists
             let iconChange = isExists ? "heart.fill" : "heart"
             self?.btnLikeSave.setImage(UIImage(systemName: iconChange), for: .normal)
             self?.btnLikeSave.isEnabled = true
         }
+    }
+    
+    func pokeImageDidChange(with image: UIImage?) {
+        if let image = image {
+            lblImage.image = image
+        }
+    }
+    
+    func pokeDetailDidChange() {
+        //
+    }
+    
+    func pokeDetailFetchFailed(with error: Error) {
+        //
     }
     
     override func viewWillAppear(_ animated: Bool) {

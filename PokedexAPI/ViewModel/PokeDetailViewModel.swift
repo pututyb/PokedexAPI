@@ -13,6 +13,7 @@ import CoreData
 protocol PokeDetailViewModelDelegate: AnyObject {
     func pokeDetailDidChange()
     func pokeDetailFetchFailed(with error: Error)
+    func pokeImageDidChange(with image: UIImage?)
 }
 
 class PokeDetailViewModel {
@@ -22,9 +23,9 @@ class PokeDetailViewModel {
     var species = ""
     var stats = ""
     var moves = ""
+    var pokeImage: UIImage?
+    weak var delegate: PokeDetailViewModelDelegate?
     var duration = 10.0
-    var lblImage: UIImage?
-    var pokeimage: PokemonImage?
     var isExists: Bool = false
     
     func showAllDataDetails() {
@@ -77,23 +78,24 @@ class PokeDetailViewModel {
     
     func saveData(with details: PokemonDetailResponse) {
         print("Like Pokemon")
-
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
+        
         let managedContext = appDelegate.persistentContainer.viewContext
-
+        
         let userEntity = NSEntityDescription.entity(forEntityName: "PokemonCore", in: managedContext)
-
+        
         let insert = NSManagedObject(entity: userEntity!, insertInto: managedContext)
         insert.setValue(details.name, forKey: "name")
-
-        if let image = lblImage {
+        
+        if let image = pokeImage {
+            delegate?.pokeImageDidChange(with: image)
             let base64String = convertImageToBase64String(img: image)
             insert.setValue(base64String, forKey: "imagePoke")
         } else {
             print("Failed to load image")
         }
-
+        
         do {
             try managedContext.save()
             print("Data saved into Core Data")
@@ -127,7 +129,7 @@ class PokeDetailViewModel {
     func convertImageToBase64String(img: UIImage) -> String {
         return img.jpegData(compressionQuality: 1)?.base64EncodedString() ?? ""
     }
-
+    
     func convertBase64StringToImage(imageBase64String: String) -> UIImage? {
         guard let imageData = Data(base64Encoded: imageBase64String) else {
             return nil
